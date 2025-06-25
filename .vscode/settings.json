@@ -13,5 +13,6 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "tailwindCSS.classAttributes": ["active-class", "inactive-class"]
+  "tailwindCSS.classAttributes": ["active-class", "inactive-class"],
+  "postman.settings.dotenv-detection-notification-visibility": false
 }
