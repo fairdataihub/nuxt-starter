@@ -55,10 +55,6 @@ const footerItems: NavigationMenuItem[] = [
     target: "_blank",
   },
 ];
-
-const color = computed(() =>
-  colorMode.value === "dark" ? "#111827" : "white",
-);
 </script>
 
 <template>
@@ -136,6 +132,7 @@ const color = computed(() =>
           target="_blank"
           aria-label="Discord"
         />
+
         <UButton
           icon="i-simple-icons-x"
           color="neutral"
@@ -144,6 +141,7 @@ const color = computed(() =>
           target="_blank"
           aria-label="X"
         />
+
         <UButton
           icon="i-simple-icons-github"
           color="neutral"
