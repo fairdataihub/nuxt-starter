@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-01-16",
   css: ["~/assets/css/main.css"],
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "nuxt-auth-utils", "dayjs-nuxt"],
+  modules: ["@nuxt/ui", "nuxt-auth-utils", "dayjs-nuxt", "@nuxt/eslint"],
   runtimeConfig: {
     emailVerificationDomain: process.env.EMAIL_VERIFICATION_DOMAIN || "",
     mailFrom: process.env.MAIL_FROM || "noreply@example.com",
@@ -17,4 +17,5 @@ export default defineNuxtConfig({
         : false,
     },
   },
+  eslint: {},
 });
