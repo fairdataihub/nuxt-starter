@@ -11,7 +11,7 @@ useSeoMeta({
 
 const toast = useToast();
 
-const { data: things, error } = await useFetch("/api/thing", {
+const { data: things, error } = await useFetch("/api/kysely-thing", {
   method: "GET",
 });
 
@@ -27,7 +27,7 @@ if (error.value) {
 const addThing = async () => {
   const thingName = faker.word.words({ count: 1 });
 
-  await $fetch("/api/thing", {
+  await $fetch("/api/kysely-thing", {
     method: "POST",
     body: {
       name: thingName,
@@ -35,8 +35,8 @@ const addThing = async () => {
   })
     .then(() => {
       toast.add({
-        title: "Thing created",
-        description: `Thing "${thingName}" created successfully.`,
+        title: "Kysely Thing created",
+        description: `Kysely Thing "${thingName}" created successfully.`,
         icon: "material-symbols:check-circle",
         color: "success",
       });
@@ -54,13 +54,13 @@ const addThing = async () => {
 };
 
 const deleteThing = async (id: string) => {
-  await $fetch(`/api/thing/${id}`, {
+  await $fetch(`/api/kysely-thing/${id}`, {
     method: "DELETE",
   })
     .then(() => {
       toast.add({
-        title: "Thing deleted",
-        description: `Thing with ID "${id}" deleted successfully.`,
+        title: "Kysely Thing deleted",
+        description: `Kysely Thing with ID "${id}" deleted successfully.`,
         icon: "material-symbols:check-circle",
         color: "success",
       });
@@ -69,8 +69,8 @@ const deleteThing = async (id: string) => {
     })
     .catch(() => {
       toast.add({
-        title: "Error deleting thing",
-        description: `Failed to delete thing with ID "${id}".`,
+        title: "Error deleting Kysely Thing",
+        description: `Failed to delete Kysely Thing with ID "${id}".`,
         icon: "material-symbols:error",
         color: "error",
       });
@@ -81,7 +81,7 @@ const deleteThing = async (id: string) => {
 <template>
   <div class="mx-auto flex w-full max-w-screen-xl flex-col gap-6 px-6">
     <UPageHeader
-      title="Dashboard"
+      title="Kysely Dashboard"
       description="A responsive page header with title, description and actions."
     >
       <template #headline>
@@ -95,8 +95,8 @@ const deleteThing = async (id: string) => {
     </UPageHeader>
 
     <div class="flex items-center justify-end gap-2">
-      <UButton color="primary" variant="outline" to="/app/kysely-dashboard">
-        Kysely Dashboard
+      <UButton color="primary" variant="outline" to="/app/dashboard">
+        Prisma Dashboard
       </UButton>
 
       <UButton

@@ -5,12 +5,12 @@ generator client {
     engineType      = "client"
 }
 
-// generator kysely {
-//   provider = "prisma-kysely"
+generator kysely {
+    provider = "prisma-kysely"
 
-//   output   = "../types"
-//   fileName = "kysely.ts"
-// }
+    output   = "../shared/generated/"
+    fileName = "kysely.ts"
+}
 
 datasource db {
     provider = "postgresql"
@@ -33,5 +33,32 @@ model User {
     created DateTime @default(now())
     updated DateTime @updatedAt
 
+    kyselyThings KyselyThing[]
+    things       Thing[]
+
     @@index([emailAddress])
+}
+
+model KyselyThing {
+    id String @id @default(cuid())
+
+    name String
+
+    userId String
+    user   User   @relation(fields: [userId], references: [id])
+
+    created DateTime @default(now())
+    updated DateTime @updatedAt
+}
+
+model Thing {
+    id String @id @default(cuid())
+
+    name String
+
+    userId String
+    user   User   @relation(fields: [userId], references: [id])
+
+    created DateTime @default(now())
+    updated DateTime @updatedAt
 }
