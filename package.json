@@ -23,6 +23,7 @@
     "prune-branches": "git removed-branches --prune --force"
   },
   "dependencies": {
+    "@paralleldrive/cuid2": "^3.3.0",
     "@vueuse/core": "13.4.0",
     "bcrypt": "^5.1.1",
     "date-fns": "^4.1.0",
