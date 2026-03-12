@@ -33,22 +33,9 @@ model User {
     created DateTime @default(now())
     updated DateTime @updatedAt
 
-    kyselyThings KyselyThing[]
-    things       Thing[]
+    things Thing[]
 
     @@index([emailAddress])
-}
-
-model KyselyThing {
-    id String @id @default(cuid())
-
-    name String
-
-    userId String
-    user   User   @relation(fields: [userId], references: [id])
-
-    created DateTime @default(now())
-    updated DateTime @updatedAt
 }
 
 model Thing {
