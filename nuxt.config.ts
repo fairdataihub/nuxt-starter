@@ -18,4 +18,16 @@ export default defineNuxtConfig({
     },
   },
   eslint: {},
+  vite: {
+    optimizeDeps: {
+      include: [
+        "@vue/devtools-core",
+        "@vue/devtools-kit",
+        "dayjs", // CJS
+        "dayjs/plugin/updateLocale", // CJS
+        "dayjs/plugin/relativeTime", // CJS
+        "dayjs/plugin/utc", // CJS
+      ],
+    },
+  },
 });

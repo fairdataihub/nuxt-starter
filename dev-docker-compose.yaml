@@ -1,7 +1,6 @@
-version: "3"
 services:
   postgres:
-    image: postgres:latest
+    image: postgres:18
     restart: always
     environment:
       POSTGRES_USER: admin
@@ -10,7 +9,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql # postgres 18 data directory
 
 volumes:
   postgres_data:

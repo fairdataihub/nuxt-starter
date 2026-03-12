@@ -6,12 +6,12 @@ useSeoMeta({
 const links = ref([
   {
     label: "Get started",
-    to: "/docs/getting-started",
+    to: "/dashboard",
     icon: "i-lucide-square-play",
   },
   {
-    label: "Learn more",
-    to: "/docs/getting-started/theme/design-system",
+    label: "Changelog",
+    to: "https://github.com/fairdataihub/nuxt-starter/blob/main/CHANGELOG.md",
     variant: "subtle" as const,
     trailingIcon: "i-lucide-arrow-right",
   },
@@ -100,7 +100,7 @@ const uiFeatures = ref([
       </UPageGrid>
     </UContainer>
 
-    <UContainer class="my-20">
+    <UContainer class="my-10">
       <UPageCard
         title="Tailwind CSS"
         description="Nuxt UI integrates with latest Tailwind CSS v4, bringing significant improvements."
@@ -115,7 +115,15 @@ const uiFeatures = ref([
       </UPageCard>
     </UContainer>
 
-    <UContainer class="my-20">
+    <UContainer class="my-10">
+      <UPageCard
+        title="Prisma ORM"
+        description="This template integrates Prisma ORM v7 for seamless database management and querying in Nuxt applications."
+        icon="i-simple-icons-prisma"
+      />
+    </UContainer>
+
+    <UContainer class="my-10">
       <UPageGrid>
         <UPageCard v-for="(ui, index) in uiFeatures" :key="index" v-bind="ui">
           <UColorModeImage

@@ -24,7 +24,11 @@ logs
 .env.*
 !.env.example
 
+# Prisma generated files
+shared/generated/*
+
 # Database 
 postgres-data/*
 redis-data/*
 database.sqlite
+

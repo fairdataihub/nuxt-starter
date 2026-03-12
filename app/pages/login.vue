@@ -25,7 +25,7 @@ const loading = ref(false);
 const showPassword = ref(false);
 
 const schema = z.object({
-  emailAddress: z.string().email(),
+  emailAddress: z.email(),
   password: z.string().min(8, "Must be at least 8 characters"),
 });
 
