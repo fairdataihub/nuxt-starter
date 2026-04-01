@@ -35,7 +35,7 @@ const footerItems: NavigationMenuItem[] = [
   <div>
     <UHeader>
       <template #title>
-        <NuxtLink to="/" class="flex text-2xl font-bold"> Nuxt App </NuxtLink>
+        <NuxtLink to="/"> Nuxt App </NuxtLink>
       </template>
 
       <UNavigationMenu :items="headerItems" />
