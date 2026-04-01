@@ -116,11 +116,19 @@ const uiFeatures = ref([
     </UContainer>
 
     <UContainer class="my-10">
-      <UPageCard
-        title="Prisma ORM"
-        description="This template integrates Prisma ORM v7 for seamless database management and querying in Nuxt applications."
-        icon="i-simple-icons-prisma"
-      />
+      <UPageGrid>
+        <UPageCard
+          title="Prisma ORM"
+          description="Use Prisma for schema management, migrations, and generated client/types to accelerate common CRUD workflows."
+          icon="i-simple-icons-prisma"
+          class="lg:col-span-2"
+        />
+        <UPageCard
+          title="Kysely Query Builder"
+          description="Use Kysely for advanced SQL composition, complex joins, and performance-sensitive queries with strong TypeScript safety."
+          icon="i-lucide-database-zap"
+        />
+      </UPageGrid>
     </UContainer>
 
     <UContainer class="my-10">

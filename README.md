@@ -65,6 +65,20 @@ docker-compose -f ./dev-docker-compose.yaml down
 
 The application uses Prisma to interact with the database.
 
+#### Kysely support
+
+This template supports both Prisma and Kysely by design.
+
+- Use Prisma for schema management, migrations, and generated types/client.
+- Use Kysely when you need more explicit SQL composition, advanced joins, or query-builder ergonomics.
+
+Why both:
+
+- Complex reporting or performance-sensitive queries can be written in Kysely without abandoning type safety.
+- You keep one source of truth for schema/migrations while still having low-level control where it matters.
+
+Example API routes are included for both approaches under [server/api/thing](server/api/thing) (Prisma) and [server/api/kysely-thing](server/api/kysely-thing) (Kysely).
+
 ### UI
 
 The application uses [Nuxt UI](https://ui.nuxt.com) to build the UI components. It also uses [Tailwind CSS](https://tailwindcss.com) for styling.
