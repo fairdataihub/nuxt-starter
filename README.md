@@ -6,10 +6,10 @@
 
 You will need the following installed on your system:
 
-- Node.js
-- pnpm
+- mise
+- Node.js (via mise)
+- pnpm (via mise)
 - Docker
-- mise (recommended)
 
 ### Setup
 
@@ -22,6 +22,7 @@ You will need the following installed on your system:
 2. Install the dependencies
 
    ```bash
+   mise trust # only needed if you are using mise on this project for the first time
    mise install
    pnpm install
    ```

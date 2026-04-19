@@ -68,5 +68,16 @@
     "typescript": "6.0.2",
     "vue": "latest",
     "zod": "4.3.6"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@prisma/engines",
+      "bcrypt",
+      "esbuild",
+      "prisma",
+      "unrs-resolver",
+      "vue-demi"
+    ]
   }
 }
