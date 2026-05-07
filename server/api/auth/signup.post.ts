@@ -53,12 +53,8 @@ export default defineEventHandler(async (event) => {
     data: {
       emailAddress: body.data.emailAddress,
       // If email verification is enabled, we need to store the verification token and expiry date
-      emailVerificationToken: emailVerificationEnabled
-        ? verificationToken
-        : null,
-      emailVerificationTokenExpires: emailVerificationEnabled
-        ? tokenExpiry
-        : null,
+      emailVerificationToken: emailVerificationEnabled ? verificationToken : null,
+      emailVerificationTokenExpires: emailVerificationEnabled ? tokenExpiry : null,
       emailVerified: !emailVerificationEnabled, // UPDATE THIS IF EMAIL VERIFICATION IS ENABLED
       emailVerifiedAt: emailVerificationEnabled ? null : new Date(),
       familyName: body.data.familyName,
@@ -78,11 +74,7 @@ export default defineEventHandler(async (event) => {
     // Send verification email
     const verificationLink = `${config.emailVerificationDomain}/verify-email?token=${verificationToken}`;
 
-    await sendEmail(
-      newUser.emailAddress,
-      "Verify Your Email Address",
-      verificationLink,
-    );
+    await sendEmail(newUser.emailAddress, "Verify Your Email Address", verificationLink);
 
     return { message: "Verification email sent. Please check your inbox." };
   }

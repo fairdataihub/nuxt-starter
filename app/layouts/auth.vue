@@ -2,13 +2,7 @@
   <div class="overlay relative flex h-screen items-center justify-center">
     <div class="gradient" />
 
-    <UButton
-      icon="i-heroicons-home"
-      label="Home"
-      to="/"
-      color="neutral"
-      class="absolute top-4"
-    />
+    <UButton icon="i-heroicons-home" label="Home" to="/" color="neutral" class="absolute top-4" />
 
     <slot />
   </div>
@@ -39,30 +33,14 @@
 .overlay {
   background-size: 100px 100px;
   background-image:
-    linear-gradient(
-      to right,
-      rgb(var(--auth-color-gray-200)) 0.5px,
-      transparent 0.5px
-    ),
-    linear-gradient(
-      to bottom,
-      rgb(var(--auth-color-gray-200)) 0.5px,
-      transparent 0.5px
-    );
+    linear-gradient(to right, rgb(var(--auth-color-gray-200)) 0.5px, transparent 0.5px),
+    linear-gradient(to bottom, rgb(var(--auth-color-gray-200)) 0.5px, transparent 0.5px);
 }
 .dark {
   .overlay {
     background-image:
-      linear-gradient(
-        to right,
-        rgb(var(--auth-color-gray-900)) 0.5px,
-        transparent 0.5px
-      ),
-      linear-gradient(
-        to bottom,
-        rgb(var(--auth-color-gray-900)) 0.5px,
-        transparent 0.5px
-      );
+      linear-gradient(to right, rgb(var(--auth-color-gray-900)) 0.5px, transparent 0.5px),
+      linear-gradient(to bottom, rgb(var(--auth-color-gray-900)) 0.5px, transparent 0.5px);
   }
 }
 </style>

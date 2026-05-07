@@ -55,19 +55,12 @@ const footerItems: NavigationMenuItem[] = [
         </UTooltip>
 
         <AuthState v-slot="{ loggedIn }">
-          <UButton
-            v-if="loggedIn"
-            color="neutral"
-            variant="outline"
-            @click="logout"
-          >
+          <UButton v-if="loggedIn" color="neutral" variant="outline" @click="logout">
             Logout
           </UButton>
 
           <div v-else class="flex items-center justify-center gap-3">
-            <UButton to="/login" color="neutral" variant="outline">
-              Sign in
-            </UButton>
+            <UButton to="/login" color="neutral" variant="outline"> Sign in </UButton>
 
             <UButton to="/signup" color="neutral">
               <template #trailing>
@@ -86,9 +79,7 @@ const footerItems: NavigationMenuItem[] = [
 
     <UFooter>
       <template #left>
-        <p class="text-muted text-sm">
-          Copyright © {{ new Date().getFullYear() }}
-        </p>
+        <p class="text-muted text-sm">Copyright © {{ new Date().getFullYear() }}</p>
       </template>
 
       <UNavigationMenu :items="footerItems" variant="link" />

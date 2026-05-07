@@ -53,9 +53,6 @@ export default withNuxt({
         endOfLine: "auto",
       },
     ],
-    "vue/padding-line-between-tags": [
-      "error",
-      [{ blankLine: "always", next: "*", prev: "*" }],
-    ],
+    "vue/padding-line-between-tags": ["error", [{ blankLine: "always", next: "*", prev: "*" }]],
   },
 });

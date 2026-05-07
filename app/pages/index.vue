@@ -38,8 +38,7 @@ const features = ref([
 const uiFeatures = ref([
   {
     title: "Theme",
-    description:
-      "Learn how to customize Nuxt UI components using Tailwind CSS v4.",
+    description: "Learn how to customize Nuxt UI components using Tailwind CSS v4.",
     icon: "i-lucide-swatch-book",
     class: "lg:col-span-2",
     image: {
@@ -51,22 +50,19 @@ const uiFeatures = ref([
   },
   {
     title: "Fonts",
-    description:
-      "Nuxt UI integrates with Nuxt Fonts to provide plug-and-play font optimization.",
+    description: "Nuxt UI integrates with Nuxt Fonts to provide plug-and-play font optimization.",
     icon: "i-lucide-a-large-small",
     variant: "soft" as const,
   },
   {
     title: "Color Mode",
-    description:
-      "Nuxt UI integrates with Nuxt Color Mode to switch between light and dark.",
+    description: "Nuxt UI integrates with Nuxt Color Mode to switch between light and dark.",
     icon: "i-lucide-sun-moon",
     variant: "soft" as const,
   },
   {
     title: "Icons",
-    description:
-      "Nuxt UI integrates with Nuxt Icon to access over 200,000+ icons from Iconify.",
+    description: "Nuxt UI integrates with Nuxt Icon to access over 200,000+ icons from Iconify.",
     icon: "i-lucide-smile",
     image: {
       path: "https://ui2.nuxt.com/illustrations/icon-library",
@@ -92,11 +88,7 @@ const uiFeatures = ref([
 
     <UContainer class="mb-20">
       <UPageGrid>
-        <UPageCard
-          v-for="(feature, index) in features"
-          :key="index"
-          v-bind="feature"
-        />
+        <UPageCard v-for="(feature, index) in features" :key="index" v-bind="feature" />
       </UPageGrid>
     </UContainer>
 

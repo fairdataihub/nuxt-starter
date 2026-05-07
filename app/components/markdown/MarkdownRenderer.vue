@@ -14,9 +14,7 @@ const props = defineProps({
 
 const sanitize = (html: string) => sanitizeHtml(html);
 
-const convertMarkdownToHtml = async (
-  markdown: string = "No content provided",
-) => {
+const convertMarkdownToHtml = async (markdown: string = "No content provided") => {
   return sanitize(await parse(markdown));
 };
 
