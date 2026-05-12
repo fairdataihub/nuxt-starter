@@ -2,19 +2,27 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
+
   "css.validate": false,
+
   "editor.formatOnSave": true,
+
   "editor.tabSize": 2,
+
   "editor.codeActionsOnSave": {
-    "source.fixAll.oxc": "always"
-    // "source.fixAll.eslint": "explicit"
+    "source.fixAll.oxc": "always",
+    "source.fixAll.eslint": "always"
   },
+
   "eslint.useFlatConfig": true,
+
   "vue.codeActions.enabled": false,
+
   "editor.hover.enabled": "on",
+
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "tailwindCSS.classAttributes": ["active-class", "inactive-class"],
-  "postman.settings.dotenv-detection-notification-visibility": false
+
+  "tailwindCSS.classAttributes": ["active-class", "inactive-class"]
 }

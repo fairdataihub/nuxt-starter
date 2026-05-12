@@ -1,5 +1,4 @@
-// @ts-check
-import withNuxt from ".nuxt/eslint.config.mjs";
+import withNuxt from "./.nuxt/eslint.config.mjs";
 
 export default withNuxt({
   plugins: {
@@ -18,10 +17,6 @@ export default withNuxt({
       },
     ],
 
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-
     "unused-imports/no-unused-imports": "error",
 
     "unused-imports/no-unused-vars": [
@@ -31,6 +26,35 @@ export default withNuxt({
         argsIgnorePattern: "^_",
         vars: "all",
         varsIgnorePattern: "^_",
+      },
+    ],
+
+    "vue/max-attributes-per-line": [
+      "warn",
+      {
+        singleline: 3,
+        multiline: 1,
+      },
+    ],
+
+    "vue/first-attribute-linebreak": [
+      "warn",
+      {
+        singleline: "ignore",
+        multiline: "below",
+      },
+    ],
+
+    "vue/html-self-closing": [
+      "warn",
+      {
+        html: {
+          void: "never",
+          normal: "always",
+          component: "always",
+        },
+        svg: "always",
+        math: "always",
       },
     ],
 
