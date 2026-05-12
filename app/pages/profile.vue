@@ -54,7 +54,9 @@ const { data: userData } = await useFetch("/api/user");
 
           <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
                 First Name
               </label>
 
@@ -64,7 +66,9 @@ const { data: userData } = await useFetch("/api/user");
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
                 Last Name
               </label>
 
@@ -74,7 +78,9 @@ const { data: userData } = await useFetch("/api/user");
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
                 Email
               </label>
 
@@ -84,7 +90,9 @@ const { data: userData } = await useFetch("/api/user");
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
                 Account Created
               </label>
 
@@ -94,7 +102,9 @@ const { data: userData } = await useFetch("/api/user");
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
                 Last Updated
               </label>
 
@@ -107,7 +117,9 @@ const { data: userData } = await useFetch("/api/user");
 
         <!-- Actions -->
         <div class="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-          <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Account Actions</h2>
+          <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+            Account Actions
+          </h2>
 
           <div class="flex flex-wrap gap-4">
             <UButton
@@ -117,7 +129,12 @@ const { data: userData } = await useFetch("/api/user");
               icon="i-heroicons-key"
             />
 
-            <UButton color="red" variant="soft" label="Delete Account" icon="i-heroicons-trash" />
+            <UButton
+              color="red"
+              variant="soft"
+              label="Delete Account"
+              icon="i-heroicons-trash"
+            />
           </div>
         </div>
       </div>

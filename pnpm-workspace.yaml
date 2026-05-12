@@ -1,1 +1,4 @@
+# setting the minimum release age to 7 days (10080 minutes) to ensure that releases are stable before being used in the workspace
 minimumReleaseAge: 10080
+blockExoticSubdeps: true
+minimumReleaseAgeStrict: true
