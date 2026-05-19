@@ -1,14 +1,16 @@
 import { z } from "zod";
-import { hash } from "bcrypt";
+import { hash } from "argon2";
 import { nanoid } from "nanoid";
 import dayjs from "dayjs";
 import { sendEmail } from "../../utils/sendEmail";
+import { randomBytes } from "crypto";
+import { createHash } from "crypto";
 
 const signupSchema = z.object({
   emailAddress: z.string().email(),
   familyName: z.string(),
   givenName: z.string(),
-  password: z.string().min(8),
+  password: z.string().min(12).max(128), // Updated password policy
 });
 
 export default defineEventHandler(async (event) => {
@@ -28,10 +30,12 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  const normalizedEmail = body.data.emailAddress.trim().toLowerCase(); // Normalize email
+
   // Check if the user already exists
   const user = await prisma.user.findUnique({
     where: {
-      emailAddress: body.data.emailAddress,
+      emailAddress: normalizedEmail, // Use normalized email
     },
   });
 
@@ -45,16 +49,24 @@ export default defineEventHandler(async (event) => {
   const emailVerificationEnabled = config.public.ENABLE_EMAIL_VERIFICATION;
 
   // Create a new user
-  const hashedPassword = await hash(body.data.password, 10);
-  const verificationToken = nanoid();
+  const hashedPassword = await hash(body.data.password);
+
+  const rawToken = nanoid();
+  const hashedToken = createHash("sha256").update(rawToken).digest("hex");
+
+  const verificationToken = rawToken; // Send raw token via email
   const tokenExpiry = dayjs().add(30, "minute").toDate();
 
   const newUser = await prisma.user.create({
     data: {
-      emailAddress: body.data.emailAddress,
+      emailAddress: normalizedEmail, // Store normalized email
       // If email verification is enabled, we need to store the verification token and expiry date
-      emailVerificationToken: emailVerificationEnabled ? verificationToken : null,
-      emailVerificationTokenExpires: emailVerificationEnabled ? tokenExpiry : null,
+      emailVerificationToken: emailVerificationEnabled
+        ? hashedToken // Store hashed token in DB
+        : null,
+      emailVerificationTokenExpires: emailVerificationEnabled
+        ? tokenExpiry
+        : null,
       emailVerified: !emailVerificationEnabled, // UPDATE THIS IF EMAIL VERIFICATION IS ENABLED
       emailVerifiedAt: emailVerificationEnabled ? null : new Date(),
       familyName: body.data.familyName,
