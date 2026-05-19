@@ -1,8 +1,9 @@
 import { z } from "zod";
-import { hash } from "bcrypt";
+import { hash } from "argon2";
 import { nanoid } from "nanoid";
 import dayjs from "dayjs";
 import { sendEmail } from "../../utils/sendEmail";
+import { randomBytes } from "crypto";
 
 const signupSchema = z.object({
   emailAddress: z.string().email(),
@@ -45,7 +46,8 @@ export default defineEventHandler(async (event) => {
   const emailVerificationEnabled = config.public.ENABLE_EMAIL_VERIFICATION;
 
   // Create a new user
-  const hashedPassword = await hash(body.data.password, 10);
+  const salt = randomBytes(16); // Generate a 16-byte salt
+  const hashedPassword = await hash(body.data.password, { salt }); // Pass the salt to argon2
   const verificationToken = nanoid();
   const tokenExpiry = dayjs().add(30, "minute").toDate();
 

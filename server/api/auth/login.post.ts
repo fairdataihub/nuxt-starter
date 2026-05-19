@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { compare } from "bcrypt";
+import { verify } from "argon2";
 
 const loginSchema = z.object({
   emailAddress: z.string().email(),
@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // Check if the password matches
-  if (!(await compare(body.data.password, user.password))) {
+  if (!(await verify(user.password, body.data.password))) {
     throw createError({
       statusCode: 401,
       statusMessage: "Invalid email address or password",
