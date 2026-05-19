@@ -4,6 +4,7 @@ import { nanoid } from "nanoid";
 import dayjs from "dayjs";
 import { sendEmail } from "../../utils/sendEmail";
 import { randomBytes } from "crypto";
+import { createHash } from "crypto";
 
 const signupSchema = z.object({
   emailAddress: z.string().email(),
@@ -48,7 +49,10 @@ export default defineEventHandler(async (event) => {
   // Create a new user
   const salt = randomBytes(16); // Generate a 16-byte salt
   const hashedPassword = await hash(body.data.password, { salt }); // Pass the salt to argon2
-  const verificationToken = nanoid();
+  const rawToken = nanoid();
+  const hashedToken = createHash("sha256").update(rawToken).digest("hex");
+
+  const verificationToken = rawToken; // Send raw token via email
   const tokenExpiry = dayjs().add(30, "minute").toDate();
 
   const newUser = await prisma.user.create({
@@ -56,7 +60,7 @@ export default defineEventHandler(async (event) => {
       emailAddress: body.data.emailAddress,
       // If email verification is enabled, we need to store the verification token and expiry date
       emailVerificationToken: emailVerificationEnabled
-        ? verificationToken
+        ? hashedToken // Store hashed token in DB
         : null,
       emailVerificationTokenExpires: emailVerificationEnabled
         ? tokenExpiry
