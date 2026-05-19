@@ -89,36 +89,23 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
         <p class="font-medium text-slate-600">
           Don't have an account?
-          <NuxtLink to="/signup" class="text-primary-500 font-medium">
-            Sign up
-          </NuxtLink>
+          <NuxtLink to="/signup" class="text-primary-500 font-medium"> Sign up </NuxtLink>
         </p>
       </div>
 
-      <UForm
-        :schema="schema"
-        :state="state"
-        class="mt-6 space-y-4"
-        @submit="onSubmit"
-      >
+      <UForm :schema="schema" :state="state" class="mt-6 space-y-4" @submit="onSubmit">
         <UFormField label="Email Address" name="emailAddress">
           <UInput v-model="state.emailAddress" type="email" />
         </UFormField>
 
         <UFormField label="Password" name="password">
           <template #hint>
-            <NuxtLink
-              to="/forgot-password"
-              class="font-medium text-sky-500 hover:underline"
-            >
+            <NuxtLink to="/forgot-password" class="font-medium text-sky-500 hover:underline">
               Forgot your password?
             </NuxtLink>
           </template>
 
-          <UInput
-            v-model="state.password"
-            :type="showPassword ? 'text' : 'password'"
-          >
+          <UInput v-model="state.password" :type="showPassword ? 'text' : 'password'">
             <template #trailing>
               <Icon
                 name="solar:eye-linear"
@@ -131,11 +118,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
           </UInput>
         </UFormField>
 
-        <UButton
-          type="submit"
-          class="flex w-full justify-center"
-          :loading="loading"
-        >
+        <UButton type="submit" class="flex w-full justify-center" :loading="loading">
           <template #trailing>
             <Icon name="i-heroicons-arrow-right-20-solid" size="20" />
           </template>

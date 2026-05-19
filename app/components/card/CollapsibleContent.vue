@@ -27,10 +27,7 @@ const uiClasses = computed(() => ({
   <UCard :ui="{ ...uiClasses }">
     <!-- Card Header -->
     <template #header>
-      <div
-        class="flex items-center justify-between p-4"
-        @click="toggleCollapse"
-      >
+      <div class="flex items-center justify-between p-4" @click="toggleCollapse">
         <h3 class="text-lg font-semibold text-sky-600">{{ title }}</h3>
 
         <UButton

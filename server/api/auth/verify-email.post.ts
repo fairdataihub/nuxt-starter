@@ -35,14 +35,10 @@ export default defineEventHandler(async (event) => {
   }
 
   // Check if the token has expired
-  if (
-    user.emailVerificationTokenExpires &&
-    user.emailVerificationTokenExpires < new Date()
-  ) {
+  if (user.emailVerificationTokenExpires && user.emailVerificationTokenExpires < new Date()) {
     throw createError({
       statusCode: 410,
-      statusMessage:
-        "Verification token has expired. Please request a new one.",
+      statusMessage: "Verification token has expired. Please request a new one.",
     });
   }
 

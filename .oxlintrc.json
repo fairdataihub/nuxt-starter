@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "vue", "node"],
+  "categories": {
+    "correctness": "error"
+  },
+  "jsPlugins": ["./oxc/plugins/h3-read-body.js"],
+  "rules": {
+    "h3-safety/prefer-validated-getters": "error"
+  },
+  "env": {
+    "builtin": true
+  },
+  "options": {
+    "typeAware": true
+  }
+}

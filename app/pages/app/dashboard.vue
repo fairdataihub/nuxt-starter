@@ -99,32 +99,24 @@ const deleteThing = async (id: string) => {
         Kysely Dashboard
       </UButton>
 
-      <UButton
-        color="primary"
-        variant="outline"
-        @click="addThing"
-        icon="material-symbols:add"
-      >
+      <UButton color="primary" variant="outline" icon="material-symbols:add" @click="addThing">
         Add Thing
       </UButton>
     </div>
 
     <UPageList>
-      <div
-        v-for="thing in things"
-        :key="thing.id"
-        class="flex items-center justify-between p-4"
-      >
+      <div v-for="thing in things" :key="thing.id" class="flex items-center justify-between p-4">
         <div>
           <h3 class="text-lg font-semibold">{{ thing.name }}</h3>
+
           <p class="text-xs text-gray-300">{{ thing.id }}</p>
         </div>
 
         <UButton
           color="error"
           variant="outline"
-          @click="deleteThing(thing.id)"
           icon="material-symbols:delete"
+          @click="deleteThing(thing.id)"
         >
           Delete
         </UButton>

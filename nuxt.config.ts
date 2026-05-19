@@ -17,7 +17,7 @@ export default defineNuxtConfig({
         : false,
     },
   },
-  eslint: {},
+  // eslint: {},
   vite: {
     optimizeDeps: {
       include: [

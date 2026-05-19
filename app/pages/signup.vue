@@ -88,18 +88,11 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
         <p class="font-medium text-slate-600">
           Already have an account?
-          <NuxtLink to="/login" class="text-primary-500 font-medium">
-            Login
-          </NuxtLink>
+          <NuxtLink to="/login" class="text-primary-500 font-medium"> Login </NuxtLink>
         </p>
       </div>
 
-      <UForm
-        :schema="schema"
-        :state="state"
-        class="mt-6 space-y-4"
-        @submit="onSubmit"
-      >
+      <UForm :schema="schema" :state="state" class="mt-6 space-y-4" @submit="onSubmit">
         <UFormField label="Given or First Name" name="givenName">
           <UInput v-model="state.givenName" type="text" />
         </UFormField>
@@ -113,10 +106,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         </UFormField>
 
         <UFormField label="Password" name="password">
-          <UInput
-            v-model="state.password"
-            :type="showPassword ? 'text' : 'password'"
-          >
+          <UInput v-model="state.password" :type="showPassword ? 'text' : 'password'">
             <template #trailing>
               <Icon
                 name="solar:eye-linear"
@@ -129,11 +119,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
           </UInput>
         </UFormField>
 
-        <UButton
-          type="submit"
-          class="flex w-full justify-center"
-          :loading="loading"
-        >
+        <UButton type="submit" class="flex w-full justify-center" :loading="loading">
           Create account
         </UButton>
       </UForm>

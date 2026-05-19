@@ -86,11 +86,7 @@ export default defineEventHandler(async (event) => {
     // Send verification email
     const verificationLink = `${config.emailVerificationDomain}/verify-email?token=${verificationToken}`;
 
-    await sendEmail(
-      newUser.emailAddress,
-      "Verify Your Email Address",
-      verificationLink,
-    );
+    await sendEmail(newUser.emailAddress, "Verify Your Email Address", verificationLink);
 
     return { message: "Verification email sent. Please check your inbox." };
   }
