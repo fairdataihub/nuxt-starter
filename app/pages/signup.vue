@@ -26,7 +26,10 @@ const schema = z.object({
   emailAddress: z.string().email(),
   familyName: z.string(),
   givenName: z.string(),
-  password: z.string().min(8, "Must be at least 8 characters"),
+  password: z
+    .string()
+    .min(12, "Must be at least 12 characters")
+    .max(128, "Must be at most 128 characters"), // Updated password policy
 });
 
 type Schema = z.output<typeof schema>;
