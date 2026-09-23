@@ -70,7 +70,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       toast.add({
         title: "Error creating account",
         color: "error",
-        description: error.data.statusMessage,
+        description: error.data?.statusMessage ?? "Request failed",
         icon: "material-symbols:error",
       });
     })

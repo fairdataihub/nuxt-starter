@@ -1,4 +1,9 @@
 export default defineEventHandler(async (event) => {
+  const session = await requireUserSession(event);
+
+  const { user } = session;
+  const userId = user.id;
+
   const { id } = event.context.params as { id: string };
 
   if (!id) {
@@ -12,6 +17,7 @@ export default defineEventHandler(async (event) => {
     .selectFrom("Thing")
     .selectAll()
     .where("id", "=", id)
+    .where("userId", "=", userId)
     .executeTakeFirst();
 
   if (!thing) {
@@ -21,7 +27,11 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  await kysely().deleteFrom("Thing").where("id", "=", id).execute();
+  await kysely()
+    .deleteFrom("Thing")
+    .where("id", "=", id)
+    .where("userId", "=", userId)
+    .execute();
 
   return { success: true, message: `Kysely Thing with ID ${id} deleted` };
 });
