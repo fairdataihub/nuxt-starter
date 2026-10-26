@@ -43,7 +43,7 @@ const uiFeatures = ref([
     icon: "i-lucide-swatch-book",
     class: "lg:col-span-2",
     image: {
-      path: "https://ui2.nuxt.com/illustrations/color-palette",
+      path: "https://picsum.photos/id/29/400",
       width: 363,
       height: 152,
     },
@@ -69,7 +69,7 @@ const uiFeatures = ref([
       "Nuxt UI integrates with Nuxt Icon to access over 200,000+ icons from Iconify.",
     icon: "i-lucide-smile",
     image: {
-      path: "https://ui2.nuxt.com/illustrations/icon-library",
+      path: "https://picsum.photos/id/46/400",
       width: 362,
       height: 184,
     },
@@ -136,8 +136,8 @@ const uiFeatures = ref([
         <UPageCard v-for="(ui, index) in uiFeatures" :key="index" v-bind="ui">
           <UColorModeImage
             v-if="ui.image"
-            :light="`${ui.image.path}-light.svg`"
-            :dark="`${ui.image.path}-dark.svg`"
+            :light="ui.image.path"
+            :dark="ui.image.path"
             :width="ui.image.width"
             :height="ui.image.height"
             :alt="ui.title"
