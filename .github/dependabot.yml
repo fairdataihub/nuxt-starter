@@ -5,7 +5,7 @@ updates:
   # and node in mise.toml to the same version.
   - package-ecosystem: docker
     directory: /
-    target-branch: staging
+    target-branch: main
     schedule:
       interval: weekly
     ignore:
