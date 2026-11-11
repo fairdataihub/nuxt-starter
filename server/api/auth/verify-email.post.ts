@@ -1,11 +1,16 @@
 import { z } from "zod";
-import { createHash } from "crypto";
 
 const verifySchema = z.object({
-  token: z.string(),
+  token: z.string().min(1).max(128),
 });
 
 export default defineEventHandler(async (event) => {
+  rateLimit(event, {
+    name: "verify-email",
+    limit: 20,
+    windowMs: 15 * 60 * 1000,
+  });
+
   const body = await readValidatedBody(event, (b) => verifySchema.safeParse(b));
 
   if (!body.success) {
@@ -15,15 +20,10 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  // Hash the incoming token
-  const hashedToken = createHash("sha256")
-    .update(body.data.token)
-    .digest("hex");
-
   // Find the user by hashed verification token
   const user = await prisma.user.findUnique({
     where: {
-      emailVerificationToken: hashedToken, // Compare hashed token
+      emailVerificationToken: hashVerificationToken(body.data.token),
     },
   });
 

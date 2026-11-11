@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { faker } from "@faker-js/faker";
+import { nanoid } from "nanoid";
 
 const thingSchema = z.object({
-  name: z.string(),
+  name: z.string().trim().min(1).max(255),
 });
 
 export default defineEventHandler(async (event) => {
@@ -18,12 +18,12 @@ export default defineEventHandler(async (event) => {
 
     throw createError({
       statusCode: 400,
-      statusMessage: "Missing dataset information",
+      statusMessage: "Invalid thing details",
     });
   }
 
   const data = {
-    id: faker.string.nanoid(),
+    id: nanoid(),
     name: body.data.name,
     userId,
     updated: new Date(),

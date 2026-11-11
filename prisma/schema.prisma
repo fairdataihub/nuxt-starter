@@ -34,8 +34,6 @@ model User {
     updated DateTime @updatedAt
 
     things Thing[]
-
-    @@index([emailAddress])
 }
 
 model Thing {
@@ -44,8 +42,10 @@ model Thing {
     name String
 
     userId String
-    user   User   @relation(fields: [userId], references: [id])
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     created DateTime @default(now())
     updated DateTime @updatedAt
+
+    @@index([userId])
 }

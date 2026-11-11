@@ -1,6 +1,23 @@
 import { createTransport } from "nodemailer";
 
-export const sendEmail = async (to: string, subject: string, text: string) => {
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
+/**
+ * Generic mail sender. `html` is sent as-is, so escape any dynamic values
+ * (see `escapeHtml`) before interpolating them into it.
+ */
+export const sendEmail = async (
+  to: string,
+  subject: string,
+  text: string,
+  html?: string,
+) => {
   const config = useRuntimeConfig();
 
   const transporter = createTransport({
@@ -12,7 +29,41 @@ export const sendEmail = async (to: string, subject: string, text: string) => {
     port: Number(config.mailPort),
   });
 
-  const htmlContent = `
+  await transporter.sendMail({
+    from: config.mailFrom,
+    html,
+    subject,
+    text,
+    to,
+  });
+};
+
+/**
+ * Builds the absolute verification link from EMAIL_VERIFICATION_DOMAIN.
+ * Throws if the domain is not configured as an absolute URL.
+ */
+export const buildVerificationLink = (rawToken: string) => {
+  const config = useRuntimeConfig();
+
+  let url: URL;
+
+  try {
+    url = new URL("/verify-email", config.emailVerificationDomain);
+  } catch {
+    throw new Error(
+      "NUXT_EMAIL_VERIFICATION_DOMAIN must be an absolute URL, e.g. https://app.example.com",
+    );
+  }
+
+  url.searchParams.set("token", rawToken);
+
+  return url.toString();
+};
+
+export const sendVerificationEmail = async (to: string, link: string) => {
+  const safeLink = escapeHtml(link);
+
+  const html = `
   <!DOCTYPE html>
   <html>
     <head>
@@ -68,10 +119,10 @@ export const sendEmail = async (to: string, subject: string, text: string) => {
             <h2>Confirm Your Email Address</h2>
             <p>Please verify your email address by clicking the button below.</p>
             <div class="button-container">
-              <a href="${text}" class="button" target="_blank">Verify My Email</a>
+              <a href="${safeLink}" class="button" target="_blank">Verify My Email</a>
             </div>
             <p>If the button does not work, please use the following link to verify your email:</p>
-            <p><a href="${text}">${text}</a></p>
+            <p><a href="${safeLink}">${safeLink}</a></p>
             <p>If you did not request this, please ignore this email.</p>
           </td>
         </tr>
@@ -80,11 +131,12 @@ export const sendEmail = async (to: string, subject: string, text: string) => {
   </html>
   `;
 
-  await transporter.sendMail({
-    from: config.mailFrom,
-    html: htmlContent,
-    subject,
-    text,
+  await sendEmail(
     to,
-  });
+    "Verify Your Email Address",
+    `Verify your email address: ${link}`,
+    html,
+  );
 };
+
+export { escapeHtml };

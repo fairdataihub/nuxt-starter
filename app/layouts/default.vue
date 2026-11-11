@@ -5,7 +5,7 @@ const { clear } = useUserSession();
 const route = useRoute();
 
 const logout = async () => {
-  clear();
+  await clear();
   await navigateTo("/login");
 };
 

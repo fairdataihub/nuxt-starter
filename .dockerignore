@@ -1,0 +1,24 @@
+# Never send secrets or host build artifacts into the Docker build context
+.env
+.env.*
+!.env.example
+
+node_modules
+.nuxt
+.output
+.nitro
+.cache
+.data
+dist
+shared/generated
+
+.git
+.github
+.vscode
+.idea
+.fleet
+.DS_Store
+*.log
+
+postgres-data
+redis-data

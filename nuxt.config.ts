@@ -3,21 +3,36 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-01-16",
   css: ["~/assets/css/main.css"],
   devtools: { enabled: true },
-  
+
   modules: ["@nuxt/ui", "nuxt-auth-utils", "dayjs-nuxt", "@nuxt/eslint"],
+
+  // Do NOT read process.env here: values would be frozen into the build output.
+  // Leave defaults empty and set them at runtime with NUXT_* env vars, e.g.
+  // NUXT_MAIL_PASS, NUXT_EMAIL_VERIFICATION_DOMAIN,
+  // NUXT_PUBLIC_ENABLE_EMAIL_VERIFICATION. See .env.example.
   runtimeConfig: {
-    emailVerificationDomain: process.env.EMAIL_VERIFICATION_DOMAIN || "",
-    mailFrom: process.env.MAIL_FROM || "noreply@example.com",
-    mailHost: process.env.MAIL_HOST || "smtp.example.com",
-    mailPass: process.env.MAIL_PASS || "password",
-    mailPort: process.env.MAIL_PORT || "587",
-    mailUser: process.env.MAIL_USER || "user",
+    emailVerificationDomain: "",
+    mailFrom: "",
+    mailHost: "",
+    mailPass: "",
+    mailPort: "587",
+    mailUser: "",
     public: {
-      ENABLE_EMAIL_VERIFICATION: process.env.ENABLE_EMAIL_VERIFICATION
-        ? process.env.ENABLE_EMAIL_VERIFICATION === "true"
-        : false,
+      ENABLE_EMAIL_VERIFICATION: false,
     },
   },
+
+  routeRules: {
+    "/**": {
+      headers: {
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+      },
+    },
+  },
+
   eslint: {},
   vite: {
     optimizeDeps: {

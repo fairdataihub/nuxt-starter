@@ -3,38 +3,35 @@ import { PostgresJSDialect } from "kysely-postgres-js";
 import postgres from "postgres";
 import type { DB } from "#shared/generated/kysely";
 
-export default function () {
-  const urlString = process.env.DATABASE_URL || "";
-  const url = new URL(urlString);
+// Create a single Kysely instance (and connection pool) per server process.
+// Creating one per call leaks a new pool on every request.
+const kyselySingleton = () => {
+  const connectionString = process.env.DATABASE_URL;
 
-  const config = {
-    database: url.pathname.slice(1), // Remove leading slash
-    host: url.hostname,
-    password: url.password,
-    port: url.port,
-    user: url.username,
-  };
+  if (!connectionString) {
+    throw new Error("DATABASE_URL is not set");
+  }
 
-  // const dialect = new PostgresDialect({
-  //   pool: new Pool({
-  //     database: process.env.DATABASE_NAME,
-  //     host: process.env.DATABASE_HOST,
-  //     max: 10,
-  //     password: process.env.DATABASE_PASSWORD,
-  //     port: parseInt(process.env.DATABASE_PORT || "5432"),
-  //     user: process.env.DATABASE_USER,
-  //   }),
-  // });
-
-  const dialect = new PostgresJSDialect({
-    postgres: postgres({
-      database: config.database,
-      host: config.host,
-      password: config.password,
-      port: parseInt(config.port || "5432"),
-      user: config.user,
+  // Passing the full connection string lets postgres.js handle URL-encoded
+  // credentials and query params such as `sslmode`.
+  return new Kysely<DB>({
+    dialect: new PostgresJSDialect({
+      postgres: postgres(connectionString),
     }),
   });
+};
 
-  return new Kysely<DB>({ dialect });
+declare const globalThis: {
+  kyselyGlobal: ReturnType<typeof kyselySingleton>;
+} & typeof global;
+
+const db = globalThis.kyselyGlobal ?? kyselySingleton();
+
+if (process.env.NODE_ENV !== "production") {
+  // Reuse the instance across HMR reloads in dev
+  globalThis.kyselyGlobal = db;
+}
+
+export default function () {
+  return db;
 }

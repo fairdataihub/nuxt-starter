@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const thingSchema = z.object({
-  name: z.string(),
+  name: z.string().trim().min(1).max(255),
 });
 
 export default defineEventHandler(async (event) => {
@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
 
     throw createError({
       statusCode: 400,
-      statusMessage: "Missing dataset information",
+      statusMessage: "Invalid thing details",
     });
   }
 
