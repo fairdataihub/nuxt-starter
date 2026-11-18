@@ -21,6 +21,7 @@ const kyselySingleton = () => {
   });
 };
 
+// eslint-disable-next-line no-shadow-restricted-names
 declare const globalThis: {
   kyselyGlobal: ReturnType<typeof kyselySingleton>;
 } & typeof global;

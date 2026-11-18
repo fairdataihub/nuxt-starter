@@ -1,4 +1,14 @@
 <script setup lang="ts">
+import { useSeoMeta } from "#app";
+import { ref } from "vue";
+import {
+  UPageHero,
+  UPageCard,
+  UPageGrid,
+  UContainer,
+  UColorModeImage,
+} from "#components";
+
 useSeoMeta({
   title: "Home",
 });
@@ -87,8 +97,7 @@ const uiFeatures = ref([
       description="A Nuxt starter template for the FAIR Data Innovations Hub. The starting point for all new projects and applications."
       headline="New release"
       :links="links"
-    >
-    </UPageHero>
+    />
 
     <UContainer class="mb-20">
       <UPageGrid>
@@ -123,6 +132,7 @@ const uiFeatures = ref([
           icon="i-simple-icons-prisma"
           class="lg:col-span-2"
         />
+
         <UPageCard
           title="Kysely Query Builder"
           description="Use Kysely for advanced SQL composition, complex joins, and performance-sensitive queries with strong TypeScript safety."

@@ -1,3 +1,7 @@
+import kysely from "#server/utils/kysely";
+import { defineEventHandler } from "h3";
+import { requireUserSession } from "#imports";
+
 export default defineEventHandler(async (event) => {
   const session = await requireUserSession(event);
 

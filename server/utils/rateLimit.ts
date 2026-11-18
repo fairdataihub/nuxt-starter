@@ -1,4 +1,5 @@
 import type { H3Event } from "h3";
+import { getRequestIP, setResponseHeader, createError } from "h3";
 
 type Bucket = { count: number; resetAt: number };
 

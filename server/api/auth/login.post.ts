@@ -1,5 +1,14 @@
 import { z } from "zod";
 import { hash, verify } from "argon2";
+import prisma from "#server/utils/prisma";
+import {
+  defineEventHandler,
+  sendRedirect,
+  readValidatedBody,
+  createError,
+} from "h3";
+import { getUserSession, setUserSession } from "#imports";
+import { rateLimit } from "#server/utils/rateLimit";
 
 const loginSchema = z.object({
   emailAddress: z.string().email().max(254),

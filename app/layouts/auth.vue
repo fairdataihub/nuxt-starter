@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { UButton } from "#components";
+</script>
+
 <template>
   <div class="overlay relative flex h-screen items-center justify-center">
     <div class="gradient" />

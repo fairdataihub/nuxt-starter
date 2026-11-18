@@ -1,5 +1,20 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from "@nuxt/ui";
+import { useUserSession } from "#imports";
+import { useRoute, navigateTo } from "#app";
+import { computed } from "vue";
+import {
+  NuxtLink,
+  UNavigationMenu,
+  UColorModeButton,
+  UButton,
+  UTooltip,
+  Icon,
+  AuthState,
+  UHeader,
+  UMain,
+  UFooter,
+} from "#components";
 
 const { clear } = useUserSession();
 const route = useRoute();

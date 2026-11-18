@@ -53,6 +53,15 @@ export default withNuxt({
         endOfLine: "auto",
       },
     ],
+    // Match Prettier, which always self-closes void elements (<img />)
+    "vue/html-self-closing": [
+      "warn",
+      {
+        html: { void: "always", normal: "always", component: "always" },
+        svg: "always",
+        math: "always",
+      },
+    ],
     "vue/padding-line-between-tags": [
       "error",
       [{ blankLine: "always", next: "*", prev: "*" }],

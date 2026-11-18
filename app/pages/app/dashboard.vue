@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { faker } from "@faker-js/faker";
+import { definePageMeta } from "#app/composables/pages";
+import { useSeoMeta, useFetch } from "#app";
+import { useToast } from "#imports";
+import { $fetch } from "#build/fetch";
+import { UBreadcrumb, UPageHeader, UButton, UPageList } from "#components";
 
 definePageMeta({
   middleware: ["auth"],
@@ -102,8 +107,8 @@ const deleteThing = async (id: string) => {
       <UButton
         color="primary"
         variant="outline"
-        @click="addThing"
         icon="material-symbols:add"
+        @click="addThing"
       >
         Add Thing
       </UButton>
@@ -117,14 +122,15 @@ const deleteThing = async (id: string) => {
       >
         <div>
           <h3 class="text-lg font-semibold">{{ thing.name }}</h3>
+
           <p class="text-xs text-gray-300">{{ thing.id }}</p>
         </div>
 
         <UButton
           color="error"
           variant="outline"
-          @click="deleteThing(thing.id)"
           icon="material-symbols:delete"
+          @click="deleteThing(thing.id)"
         >
           Delete
         </UButton>

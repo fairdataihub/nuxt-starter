@@ -1,10 +1,22 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-01-16",
+
   css: ["~/assets/css/main.css"],
+
   devtools: { enabled: true },
 
-  modules: ["@nuxt/ui", "nuxt-auth-utils", "dayjs-nuxt", "@nuxt/eslint"],
+  explicitImports: {
+    mode: { imports: "strict", components: "strict", server: "strict" },
+  },
+
+  modules: [
+    "@nuxt/ui",
+    "nuxt-auth-utils",
+    "dayjs-nuxt",
+    "@nuxt/eslint",
+    "nuxt-explicit-imports",
+  ],
 
   // Do NOT read process.env here: values would be frozen into the build output.
   // Leave defaults empty and set them at runtime with NUXT_* env vars, e.g.
@@ -34,6 +46,7 @@ export default defineNuxtConfig({
   },
 
   eslint: {},
+
   vite: {
     optimizeDeps: {
       include: [
