@@ -41,7 +41,7 @@
   "devDependencies": {
     "@faker-js/faker": "10.6.0",
     "@nuxt/eslint": "1.17.0",
-    "@nuxt/ui": "4.12.0",
+    "@nuxt/ui": "4.13.0",
     "@nuxtjs/eslint-config-typescript": "12.1.0",
     "@prisma/adapter-pg": "7.10.1",
     "@prisma/client": "7.10.1",
