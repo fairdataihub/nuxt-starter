@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useSeoMeta } from "#app";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import {
   UPageHero,
   UPageCard,
@@ -8,6 +8,7 @@ import {
   UContainer,
   UColorModeImage,
 } from "#components";
+import { getColorblindSafeColors } from "#shared/utils/constants";
 
 useSeoMeta({
   title: "Home",
@@ -44,6 +45,31 @@ const features = ref([
     icon: "i-lucide-sun-moon",
   },
 ]);
+
+const sampleItems = ref([
+  { label: "Genomics", count: 128 },
+  { label: "Imaging", count: 96 },
+  { label: "Clinical", count: 84 },
+  { label: "Wearables", count: 71 },
+  { label: "Surveys", count: 63 },
+  { label: "Proteomics", count: 52 },
+  { label: "Metabolomics", count: 41 },
+  { label: "Environmental", count: 33 },
+]);
+
+const maxSampleCount = computed(() =>
+  Math.max(...sampleItems.value.map((item) => item.count)),
+);
+
+const coloredSampleItems = computed(() => {
+  const colors = getColorblindSafeColors(sampleItems.value.length);
+
+  return sampleItems.value.map((item, index) => ({
+    ...item,
+    color: colors[index],
+    percent: (item.count / maxSampleCount.value) * 100,
+  }));
+});
 
 const uiFeatures = ref([
   {
@@ -139,6 +165,51 @@ const uiFeatures = ref([
           icon="i-lucide-database-zap"
         />
       </UPageGrid>
+    </UContainer>
+
+    <UContainer class="my-10">
+      <UPageCard
+        title="Colorblind-safe palette"
+        description="Sample datasets colored with getColorblindSafeColors() from shared/utils/constants.ts."
+        icon="i-lucide-palette"
+      >
+        <ul class="flex flex-col gap-3">
+          <li
+            v-for="item in coloredSampleItems"
+            :key="item.label"
+            class="flex items-center gap-3"
+          >
+            <span
+              class="size-3 shrink-0 rounded-full"
+              :style="{ backgroundColor: item.color }"
+            />
+
+            <span class="w-28 shrink-0 text-sm font-medium">
+              {{ item.label }}
+            </span>
+
+            <div class="bg-elevated h-2 flex-1 overflow-hidden rounded-full">
+              <div
+                class="h-full rounded-full"
+                :style="{
+                  width: `${item.percent}%`,
+                  backgroundColor: item.color,
+                }"
+              />
+            </div>
+
+            <span
+              class="text-muted w-10 shrink-0 text-right text-sm tabular-nums"
+            >
+              {{ item.count }}
+            </span>
+
+            <code class="text-muted hidden w-20 shrink-0 text-xs sm:block">
+              {{ item.color }}
+            </code>
+          </li>
+        </ul>
+      </UPageCard>
     </UContainer>
 
     <UContainer class="my-10">

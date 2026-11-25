@@ -6,17 +6,7 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  explicitImports: {
-    mode: { imports: "strict", components: "strict", server: "strict" },
-  },
-
-  modules: [
-    "@nuxt/ui",
-    "nuxt-auth-utils",
-    "dayjs-nuxt",
-    "@nuxt/eslint",
-    "nuxt-explicit-imports",
-  ],
+  modules: ["@nuxt/ui", "nuxt-auth-utils", "dayjs-nuxt", "@nuxt/eslint"],
 
   // Do NOT read process.env here: values would be frozen into the build output.
   // Leave defaults empty and set them at runtime with NUXT_* env vars, e.g.
