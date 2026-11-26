@@ -1,5 +1,5 @@
 # Build stage
-FROM node:22.23.4-alpine AS builder
+FROM node:22.23.5-alpine AS builder
 
 # Use alpine-based image and install only necessary dependencies
 RUN apk add --no-cache openssl
@@ -29,7 +29,7 @@ RUN pnpm run build
 
 # Migration tooling stage: installs only the Prisma CLI (pinned to the
 # project's version) so `prisma migrate deploy` can run in the final image
-FROM node:22.23.4-alpine AS migrator
+FROM node:22.23.5-alpine AS migrator
 
 RUN apk add --no-cache openssl
 
@@ -45,7 +45,7 @@ RUN PRISMA_VERSION=$(node -p "require('/tmp/package.json').devDependencies.prism
   && npm cache clean --force
 
 # Production stage
-FROM node:22.23.4-alpine
+FROM node:22.23.5-alpine
 
 LABEL maintainer="FAIR Data Innovations Hub <contact@fairdataihub.org>" \
   description="This is a Nuxt starter template for the FAIR Data Innovations Hub."
