@@ -1,15 +1,4 @@
 <script setup lang="ts">
-import { useSeoMeta } from "#app";
-import { computed, ref } from "vue";
-import {
-  UPageHero,
-  UPageCard,
-  UPageGrid,
-  UContainer,
-  UColorModeImage,
-} from "#components";
-import { getColorblindSafeColors } from "#shared/utils/constants";
-
 useSeoMeta({
   title: "Home",
 });

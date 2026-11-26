@@ -2,7 +2,6 @@
 <script setup lang="ts">
 import sanitizeHtml from "sanitize-html";
 import { parse } from "marked";
-import { ref } from "vue";
 
 const renderedMarkdown = ref("");
 

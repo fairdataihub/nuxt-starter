@@ -1,8 +1,4 @@
 import { z } from "zod";
-import prisma from "#server/utils/prisma";
-import { defineEventHandler, readValidatedBody, createError } from "h3";
-import { rateLimit } from "#server/utils/rateLimit";
-import { hashVerificationToken } from "#server/utils/verificationToken";
 
 const verifySchema = z.object({
   token: z.string().min(1).max(128),

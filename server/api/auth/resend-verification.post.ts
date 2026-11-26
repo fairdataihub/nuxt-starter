@@ -1,13 +1,4 @@
 import { z } from "zod";
-import prisma from "#server/utils/prisma";
-import { defineEventHandler, createError, readValidatedBody } from "h3";
-import { useRuntimeConfig } from "nitropack/runtime";
-import { rateLimit } from "#server/utils/rateLimit";
-import { createVerificationToken } from "#server/utils/verificationToken";
-import {
-  buildVerificationLink,
-  sendVerificationEmail,
-} from "#server/utils/sendEmail";
 
 const resendSchema = z.object({
   emailAddress: z.string().email().max(254),

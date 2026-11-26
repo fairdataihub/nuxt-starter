@@ -1,6 +1,3 @@
-import { defineNuxtRouteMiddleware, navigateTo } from "#app";
-import { useUserSession } from "#imports";
-
 export default defineNuxtRouteMiddleware((to, _from) => {
   const { loggedIn } = useUserSession();
 

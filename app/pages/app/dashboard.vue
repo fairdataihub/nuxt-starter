@@ -1,10 +1,5 @@
 <script setup lang="ts">
 import { faker } from "@faker-js/faker";
-import { definePageMeta } from "#app/composables/pages";
-import { useSeoMeta, useFetch } from "#app";
-import { useToast } from "#imports";
-import { $fetch } from "#build/fetch";
-import { UBreadcrumb, UPageHeader, UButton, UPageList } from "#components";
 
 definePageMeta({
   middleware: ["auth"],

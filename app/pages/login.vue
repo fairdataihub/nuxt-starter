@@ -1,20 +1,6 @@
 <script setup lang="ts">
 import { z } from "zod";
 import type { FormSubmitEvent } from "#ui/types";
-import { useUserSession, useToast } from "#imports";
-import { useRoute, navigateTo, useSeoMeta } from "#app";
-import { definePageMeta } from "#app/composables/pages";
-import { ref, reactive } from "vue";
-import { $fetch } from "#build/fetch";
-import {
-  Icon,
-  NuxtLink,
-  UInput,
-  UFormField,
-  UButton,
-  UForm,
-  UCard,
-} from "#components";
 
 const { loggedIn } = useUserSession();
 const route = useRoute();

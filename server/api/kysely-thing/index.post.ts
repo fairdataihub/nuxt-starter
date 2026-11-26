@@ -1,8 +1,5 @@
 import { z } from "zod";
 import { nanoid } from "nanoid";
-import kysely from "#server/utils/kysely";
-import { defineEventHandler, readValidatedBody, createError } from "h3";
-import { requireUserSession } from "#imports";
 
 const thingSchema = z.object({
   name: z.string().trim().min(1).max(255),

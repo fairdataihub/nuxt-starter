@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { UButton, UCard } from "#components";
 
 const props = defineProps({
   title: { default: "Card Title", type: String },

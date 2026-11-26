@@ -1,20 +1,5 @@
 import { z } from "zod";
 import { hash } from "argon2";
-import prisma from "#server/utils/prisma";
-import {
-  defineEventHandler,
-  sendRedirect,
-  readValidatedBody,
-  createError,
-} from "h3";
-import { getUserSession } from "#imports";
-import { rateLimit } from "#server/utils/rateLimit";
-import { useRuntimeConfig } from "nitropack/runtime";
-import { createVerificationToken } from "#server/utils/verificationToken";
-import {
-  buildVerificationLink,
-  sendVerificationEmail,
-} from "#server/utils/sendEmail";
 
 const signupSchema = z.object({
   emailAddress: z.string().email().max(254),

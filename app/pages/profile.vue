@@ -1,8 +1,4 @@
 <script setup>
-import { definePageMeta } from "#app/composables/pages";
-import { useSeoMeta, useFetch } from "#app";
-import { UAvatar, UBadge, UButton, UContainer } from "#components";
-
 definePageMeta({
   middleware: ["auth"],
 });

@@ -1,5 +1,4 @@
 import { createTransport } from "nodemailer";
-import { useRuntimeConfig } from "nitropack/runtime";
 
 const escapeHtml = (value: string) =>
   value

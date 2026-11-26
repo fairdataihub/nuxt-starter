@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { useColorMode } from "#imports";
-import { useHead, useSeoMeta } from "#app";
-import { NuxtLoadingIndicator, NuxtPage, NuxtLayout, UApp } from "#components";
-
 const colorMode = useColorMode();
 
 useHead({
